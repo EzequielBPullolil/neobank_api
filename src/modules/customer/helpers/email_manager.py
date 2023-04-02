@@ -13,5 +13,5 @@ class EmailManager:
         query = select(Customer).where(Customer.email == email)
         result = session.execute(query).fetchone()
 
-        if(len(result) > 0):
+        if (result != None):
             raise DuplicatedEmail(email)
