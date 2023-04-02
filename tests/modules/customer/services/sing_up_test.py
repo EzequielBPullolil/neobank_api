@@ -8,7 +8,8 @@ class TestSingUpCustomerServices:
         '''
             Check if parse an singed_email to SingUpCustomer 
         '''
+        sing_up_customer = SingUpCustomerService()
         with pytest.raises(DuplicatedEmail) as e_info:
-            SingUpCustomerService(email=singed_customer['email'])
+            sing_up_customer.register_user(singed_customer['email'])
             assert f"The email '{singed_customer['email']}' is already in use" in str(
                 e_info.value)
