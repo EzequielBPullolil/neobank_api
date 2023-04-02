@@ -4,6 +4,14 @@ import pytest
 
 
 class TestSingUpCustomerServices:
+    sing_up_customer = SingUpCustomerService()
+
+    def test_correct_sing_up_user(self):
+        '''
+            Sings an user
+        '''
+        self.sing_up_customer.register_user(email='abcdf@mail.com')
+
     def test_already_singed_email_raise_exception(self, singed_customer):
         '''
             Check if parse an singed_email to SingUpCustomer 
