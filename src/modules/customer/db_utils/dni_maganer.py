@@ -1,5 +1,5 @@
 from src.modules.customer.exceptions import DuplicatedDNI
-from modules.customer.helpers.hash_dni import hash_dni
+from src.modules.customer.helpers.hash_dni import hash_dni
 from sqlalchemy import select
 from src.database import session
 from src.modules.customer.model import Customer
