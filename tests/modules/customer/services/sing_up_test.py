@@ -1,6 +1,9 @@
+import pytest
 from src.modules.customer.exceptions import DuplicatedEmail, DuplicatedDNI
 from src.modules.customer.services.sing_up import SingUpCustomerService
-import pytest
+from src.modules.customer.model import Customer
+from src.database import session
+from sqlalchemy import select
 
 
 class TestSingUpCustomerServices:
@@ -36,3 +39,18 @@ class TestSingUpCustomerServices:
             )
             assert f"The dni '{registered_dni}' is already in use" in str(
                 e_info.value)
+
+    def test_register_user_generate_random_alias(self):
+        '''
+            Check if persisted user of register_user have an random alias
+        '''
+        email = 'aliastest@singup.com'
+        self.sing_up_customer.register_user(
+            email=email, dni='44160123')
+
+        result = session.execute(
+            select(Customer.alias).where(Customer.email == email)
+        ).fetchone()[0]
+
+        assert result != None
+        assert 'neobank' in result
