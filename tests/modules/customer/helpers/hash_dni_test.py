@@ -1,4 +1,4 @@
-from modules.customer.helpers.hash_dni import hash_dni
+from src.modules.customer.helpers.hash_dni import hash_dni
 
 
 class TestHashDni:
@@ -8,7 +8,7 @@ class TestHashDni:
             hash
         '''
         text = '44444444'
-        first_encrypt = encrypt_dni(text)
-        seccond_encrypt = encrypt_dni(text)
+        first_encrypt = hash_dni(text)
+        seccond_encrypt = hash_dni(text)
 
         assert first_encrypt == seccond_encrypt
