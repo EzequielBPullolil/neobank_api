@@ -54,3 +54,20 @@ class TestSingUpCustomerServices:
 
         assert result != None
         assert 'neobank' in result
+
+    def test_register_user_generate_random_cvu_identifier(self):
+        '''
+            Check if the customer persisted by SingUpCustomerService
+            generate random CBU 
+        '''
+        email = 'cbutest@singup.com'
+        self.sing_up_customer.register_user(
+            email=email, dni='11111111')
+
+        result = session.execute(
+            select(Customer.cvu_identifier).where(Customer.email == email)
+        ).fetchone()[0]
+
+        assert result != None
+
+        print(result)
