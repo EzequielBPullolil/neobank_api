@@ -4,6 +4,7 @@ from src.database import session
 from src.modules.customer.model import Customer
 from uuid import uuid4
 from src.modules.customer.helpers.hash_dni import hash_dni
+from src.modules.customer.helpers.generate_cvu import generate_cvu
 
 
 class SingUpCustomerService():
@@ -17,14 +18,16 @@ class SingUpCustomerService():
         '''
         self.emailManager.check_email_availability(email)
         self.dniManager.check_dni_availability(dni)
-        hashed_dni =hash_dni(dni)
+        hashed_dni = hash_dni(dni)
         alias = generate_alias('ezequiel')
-        id = uuid4()
+        id = str(uuid4())
+        cvu = generate_cvu()
         customer = Customer(
             id,
             email,
             hashed_dni,
-            alias
+            alias,
+            cvu
         )
         session.add(customer)
 
