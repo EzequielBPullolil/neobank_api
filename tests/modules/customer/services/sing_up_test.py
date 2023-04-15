@@ -23,7 +23,7 @@ class TestSingUpCustomerServices:
         registered_email = singed_customer['email']
         with pytest.raises(DuplicatedEmail) as e_info:
             self.sing_up_customer.register_user(
-                registered_email, dni='11234234')
+                email=registered_email, dni='11234234')
             assert f"The email '{registered_email}' is already in use" in str(
                 e_info.value)
 
@@ -69,5 +69,4 @@ class TestSingUpCustomerServices:
         ).fetchone()[0]
 
         assert result != None
-
-        print(result)
+        assert len(result) == 22
