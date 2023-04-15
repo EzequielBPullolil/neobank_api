@@ -7,7 +7,7 @@ from src.modules.customer.helpers.hash_dni import hash_dni
 from src.modules.customer.helpers.generate_cvu import generate_cvu
 
 
-class SingUpCustomerService():
+class SignUpCustomerService():
     emailManager = EmailManager()
     dniManager = DniManager()
 

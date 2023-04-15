@@ -1,13 +1,13 @@
 import pytest
 from src.modules.customer.exceptions import DuplicatedEmail, DuplicatedDNI
-from src.modules.customer.services.sing_up import SingUpCustomerService
+from src.modules.customer.services.sign_up import SignUpCustomerService
 from src.modules.customer.model import Customer
 from src.database import session
 from sqlalchemy import select
 
 
 class TestSingUpCustomerServices:
-    sing_up_customer = SingUpCustomerService()
+    sing_up_customer = SignUpCustomerService()
 
     def test_correct_sing_up_user(self):
         '''
